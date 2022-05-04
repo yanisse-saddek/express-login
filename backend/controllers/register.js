@@ -48,5 +48,9 @@ router.get('/admin', async (req, res, next)=>{
   const users = await UserModel.find()
   res.json(users)
 })
+router.post('/logout', function(req, res){
+  req.logout();
+  res.json('disconnected')
+});
 
 module.exports = router

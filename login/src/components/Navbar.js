@@ -13,7 +13,7 @@ export default function Navbar(props){
         <div className="btn-group" role="group" aria-label="Basic example">
             {
                 context.logState?
-                <button onClick={()=>{props.change(<Disconnect/>)}} type="button" className="btn btn-Danger">Deconnexion</button>:
+                <button onClick={()=>{props.change(<Disconnect/>)}} type="button" className="btn btn-danger">Deconnexion</button>:
                 <>
                     <button onClick={()=>{props.change(<Login/>)}} type="button" className="btn btn-success">Connexion</button>
                     <button onClick={()=>{props.change(<Register/>)}} type="button" className="btn btn-success">Inscription</button>

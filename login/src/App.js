@@ -15,6 +15,7 @@ function App() {
     setPage(page)
   }
   const changeLog = (state)=>{
+    console.log('changelog', state)
     setLog(state)
   }
   const contextData = {
