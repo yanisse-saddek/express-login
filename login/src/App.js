@@ -9,7 +9,7 @@ import React from 'react'
 export const logContext = React.createContext();
 function App() {
   const [page, setPage] = useState(<Register/>)
-  const [isLogged, setLog] = useState(false)
+  const [logState, setLog] = useState(false)
 
   const changePage = (page)=>{
     setPage(page)
@@ -18,8 +18,9 @@ function App() {
     setLog(state)
   }
   const contextData = {
-    logState:isLogged,
-    changeLog:changeLog
+    logState:logState,
+    changeLog:changeLog,
+    changePage  
   }
   return (
     <logContext.Provider value={contextData}>

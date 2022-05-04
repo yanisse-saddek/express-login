@@ -1,5 +1,6 @@
 import {useState, useContext} from 'react'
 import axios from 'axios'
+import Admin from './Admin'
 import {logContext} from '../App'
 
 export default function Login(){
@@ -7,7 +8,6 @@ export default function Login(){
     const [status, setStatus] = useState(false)
 
     const context = useContext(logContext);
-    console.log(context)
     const submitHandler = (e)=>{
         e.preventDefault()
         const v = e.target
@@ -20,8 +20,8 @@ export default function Login(){
         ).then(result=>{
             setStatus(true)
             setError(false)
-            context.changeLog(true)
-            console.log(result)
+            context.changeLog(result)
+            context.changePage(<Admin/>)
         }).catch(
             function (error) {
               setError(true)
@@ -33,21 +33,21 @@ export default function Login(){
         }
     return(
     <form onSubmit={submitHandler}>
-        <div class="form-group">
+        <div className="form-group">
             <h2>Login</h2>
             {
         error?
-        <div class="alert alert-danger" role="alert">
+        <div className="alert alert-danger" role="alert">
             Erreur
         </div>
         :null
     }
-        <label for="exampleInputEmail1">Email address</label>
-        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
-        <label for="exampleInputPassword1">Password</label>
-        <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+        <label htmlFor="exampleInputEmail1">Email address</label>
+        <input name="email" type="email" className="form-control" aria-describedby="emailHelp" placeholder="Enter email"/>
+        <label htmlFor="exampleInputPassword1">Password</label>
+        <input name="password" type="password" className="form-control"  placeholder="Password"/>
     </div>
-    <button type="submit" class="btn btn-primary">Connexion</button>
+    <button type="submit" className="btn btn-primary">Connexion</button>
     </form>
     )
 }
