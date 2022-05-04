@@ -34,6 +34,7 @@ router.post('/register',
 router.post('/auth/login', 
 passport.authenticate('local'),
 (req, res) => {
+  console.log('c passé')
     if (req.user) {
       req.logIn(req.user, (err) => {
         if (err) throw err

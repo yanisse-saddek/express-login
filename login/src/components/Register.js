@@ -49,22 +49,22 @@ const submitHandler = (e, ok)=>{
         :null
     }
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+        <label for="exampleInputEmail1">Adresse mail</label>
+        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse mail"/>
 
-        <label for="exampleInputEmail1">Firstname</label>
-        <input name="firstname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+        <label for="exampleInputEmail1">Prénom</label>
+        <input name="firstname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Prénom"/>
 
-        <label for="exampleInputPassword1">Surname</label>
-        <input name="surname" type="text" class="form-control" id="exampleInputPassword1" placeholder="Surname"/>
+        <label for="exampleInputPassword1">Nom de famille</label>
+        <input name="surname" type="text" class="form-control" id="exampleInputPassword1" placeholder="Nom de famille"/>
 
-        <label for="exampleInputPassword1">Password</label>
-        <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+        <label for="exampleInputPassword1">Mot de passe</label>
+        <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe"/>
 
-        <label for="exampleInputPassword1">Confirm your password</label>
-        <input name="confirmpassword" type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm your password"/>
+        <label for="exampleInputPassword1">Confirmez votre mot de passe</label>
+        <input name="confirmpassword" type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirmez votre mot de passe"/>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Inscription</button>
     </form>
     )
 }
