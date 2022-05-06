@@ -43,11 +43,9 @@ passport.authenticate('local'),
 (req, res) => {
   if (req.user) {
     req.logIn(req.user, (err) => {
-        console.log('c passé')
         res.status(200).json(req.user)
       })
     }else{
-      console.log('non')
       res.json("eh no")
     }
 })
@@ -63,6 +61,7 @@ function loggedIn(req, res, next) {
     return next();
   } else {
     console.log('No user object.')
+    res.send('no user object')
   }
 }
 
@@ -71,6 +70,7 @@ router.post('/upload',
           upload.single('file'),
           (req, res)=>{
             console.log(req.user)
+            res.send('ca marche !!')
             // const newPathFile = path.join(req.file.destination, req.file.originalname)
             // fs.renameSync(req.file.path, newPathFile)
 })
