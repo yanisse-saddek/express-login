@@ -14,7 +14,7 @@ const submitHandler = (e, ok)=>{
         password:v.password.value,
         confirmpassword:v.confirmpassword.value,
         firstname:v.firstname.value,
-        surname:v.surname.value
+        surname:v.surname.value,
     }
     axios.post('http://localhost:4000/register/',
                 data,    
@@ -63,6 +63,7 @@ const submitHandler = (e, ok)=>{
 
         <label htmlFor="exampleInputPassword2">Confirmez votre mot de passe</label>
         <input name="confirmpassword" type="password" className="form-control" id="exampleInputPassword2" placeholder="Confirmez votre mot de passe"/>
+
     </div>
     <button type="submit" className="btn btn-primary">Inscription</button>
     </form>

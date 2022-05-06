@@ -3,6 +3,12 @@ var router = express.Router()
 const UserModel = require('../models/User')
 const { body, validationResult } = require('express-validator');
 const passport = require('../config/passport')
+const multer = require('multer')
+const upload = multer({ dest: 'public/uploads/' })
+const fs = require("fs");
+const path = require("path");
+
+
 
 const  checkIfExist = async (req, res, next)=>{
     const result = await UserModel.find({email:req.body.email})
@@ -28,29 +34,51 @@ router.post('/register',
             }
             const user = new UserModel(req.body)
             user.save()
-               res.json(req.body)
+            res.json(req.body)
 })
+
 
 router.post('/auth/login', 
 passport.authenticate('local'),
 (req, res) => {
-  console.log('c passé')
-    if (req.user) {
-      req.logIn(req.user, (err) => {
-        if (err) throw err
+  if (req.user) {
+    req.logIn(req.user, (err) => {
+        console.log('c passé')
         res.status(200).json(req.user)
       })
+    }else{
+      console.log('non')
+      res.json("eh no")
     }
-    res.json("eh no")
 })
 
 router.get('/admin', async (req, res, next)=>{
   const users = await UserModel.find()
   res.json(users)
 })
+
+function loggedIn(req, res, next) {
+  if (req.user) {
+    console.log(`User: found.`)
+    return next();
+  } else {
+    console.log('No user object.')
+  }
+}
+
+router.post('/upload',
+          loggedIn,
+          upload.single('file'),
+          (req, res)=>{
+            console.log(req.user)
+            // const newPathFile = path.join(req.file.destination, req.file.originalname)
+            // fs.renameSync(req.file.path, newPathFile)
+})
+
 router.post('/logout', function(req, res){
   req.logout();
   res.json('disconnected')
 });
+
 
 module.exports = router
