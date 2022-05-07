@@ -21,8 +21,7 @@ export default function Admin(){
     }
     useEffect(()=>{
         if(context.logState){
-            
-            axios.get('http://localhost:4000/admin').then(data=>{
+            axios.get('http://localhost:4000/admin', {withCredentials:true}).then(data=>{
                 setUserList(data.data)
             })
         }else{
@@ -44,7 +43,12 @@ export default function Admin(){
         <ul className="list-group">
         {
             userList.map((user,index)=>{
-                    return <li key={index} className="list-group-item">{user.firstname}</li>
+                    return (
+                        <div>
+                            <img src={user.profilePicture} />
+                            <li key={index} className="list-group-item">{user.firstname}</li>
+                        </div>
+                    )
             })
         }
         </ul>

@@ -15,9 +15,7 @@ export default function Login(){
             email:v.email.value,
             password:v.password.value,
         }
-        axios.post('http://localhost:4000/auth/login',
-                    data,    
-        ).then(result=>{
+    axios.post('http://localhost:4000/auth/login',data,{withCredentials: true}).then(result=>{
             setStatus(true)
             setError(false)
             context.changeLog(result)

@@ -32,7 +32,10 @@ router.post('/register',
             if (!errors.isEmpty()) {
               return res.status(400).json({ errors: errors.array() });
             }
-            const user = new UserModel(req.body)
+            var newUser = req.body
+            newUser.profilePicture = 'http://localhost:4000/uploads/ok.png'
+
+            const user = new UserModel(newUser)
             user.save()
             res.json(req.body)
 })
@@ -50,10 +53,7 @@ passport.authenticate('local'),
     }
 })
 
-router.get('/admin', async (req, res, next)=>{
-  const users = await UserModel.find()
-  res.json(users)
-})
+
 
 function loggedIn(req, res, next) {
   if (req.user) {
@@ -61,18 +61,22 @@ function loggedIn(req, res, next) {
     return next();
   } else {
     console.log('No user object.')
-    res.send('no user object')
+    res.status(401).send('no user object')
   }
 }
-
+router.get('/admin',loggedIn, async (req, res, next)=>{
+  const users = await UserModel.find()
+  res.json(users)
+})
 router.post('/upload',
           loggedIn,
           upload.single('file'),
           (req, res)=>{
-            console.log(req.user)
-            res.send('ca marche !!')
-            // const newPathFile = path.join(req.file.destination, req.file.originalname)
-            // fs.renameSync(req.file.path, newPathFile)
+            const newPathFile = path.join(req.file.destination, req.file.originalname)
+            fs.renameSync(req.file.path, newPathFile)
+            UserModel.findOneAndUpdate({_id:req.user._id}, {profilePicture:newPathFile}).then(update=>{
+              res.json(update)
+            })
 })
 
 router.post('/logout', function(req, res){
